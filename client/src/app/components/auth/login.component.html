@@ -1,0 +1,51 @@
+<div class="wallpaper">
+  <div class="loading-shade"
+       *ngIf="isLoading">
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+  </div>
+
+  <mat-card class="login-card" *ngIf="!isLoggedIn">
+    <mat-card-title style="text-align: center;">Login with Steemit credentials</mat-card-title>
+    <mat-card-subtitle>Your key is needed for the auto_follow bot.In case something goes wrong, you can at anytime cancel your posting key, so any future actions will not even start.</mat-card-subtitle>
+    <form [formGroup]="myform">
+      <mat-card-content>
+      <hr>
+      <div class="flex-container">
+        <mat-form-field style="width: 70%">
+          <input matInput placeholder="Steemit Username" formControlName="email" required>
+          <mat-icon matPrefix>account_circle</mat-icon>
+          <mat-error *ngIf="myform.get('email').invalid">This is a required field</mat-error>
+        </mat-form-field>
+        <mat-form-field style="width: 90%">
+          <input #pass matInput placeholder="Steemit Posting Key" type="password" formControlName="password" required>
+          <mat-icon matSuffix (click)="pass.type = (pass.type == 'password' ? 'text':'password')">{{ pass.type == 'password' ? 'visibility' : 'visibility_off'}}</mat-icon>
+          <mat-error *ngIf="myform.get('password').invalid">This is a required field</mat-error>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+    <mat-card-actions style="text-align: center">
+      <button mat-raised-button color="primary" [disabled]="myform.invalid" style="width: 50%" (click)="login()">Login</button>
+    </mat-card-actions>
+    </form>
+  </mat-card>
+
+  <mat-card class="login-card" *ngIf="isLoggedIn">
+    <mat-card-title style="text-align: center;">Hello {{account?.user}}</mat-card-title>
+    <mat-card-subtitle>Everytime you are logging in with your credentials, we update the data so that we have an valid key.</mat-card-subtitle>
+      <mat-card-content>
+        <hr>
+        <div class="flex-container">
+          <p>{{message?.message}}</p>
+          <p>Next run is scheduled at: {{ nextDate | date: 'medium'}}</p>
+        </div>
+        <hr>
+      </mat-card-content>
+      <mat-card-actions>
+        <div class="flex-container-row">
+          <button mat-raised-button color="primary"  style="width: 50%" (click)="remove()">Remove from queue</button>
+          <button mat-raised-button color="primary"  style="width: 50%" (click)="logout()">Logout</button>
+        </div>
+      </mat-card-actions>
+  </mat-card>
+
+</div>

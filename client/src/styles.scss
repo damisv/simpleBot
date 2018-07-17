@@ -1,0 +1,30 @@
+
+html, body {
+  height: 100% ;
+}
+
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+/*
+Light theme configs
+ */
+$light-app-primary: mat-palette($mat-blue, 700, 500, 900);
+$light-app-accent: mat-palette($mat-grey, 700, 500, 900);
+$light-app-warn: mat-palette($mat-red);
+$light-app-theme: mat-light-theme($light-app-primary, $light-app-accent, $light-app-warn);
+
+.light-theme { @include angular-material-theme($light-app-theme); }
+
+/*
+ Dark theme configs
+ */
+$dark-app-primary: mat-palette($mat-pink, 700);
+$dark-app-accent: mat-palette($mat-blue-grey);
+$dark-app-warn: mat-palette($mat-red);
+$dark-app-theme: mat-dark-theme($dark-app-primary, $dark-app-accent, $dark-app-warn);
+
+.dark-theme { @include angular-material-theme($dark-app-theme); }
+
