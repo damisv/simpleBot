@@ -10,7 +10,7 @@
     "start": "concurrently \"npm run start:client\" \"npm run start:server\"",
     "start:client": "cd client && ng serve",
     "start:server": "cd server && npm start",
-    "start:prod": "npm run build && cd server/dist && node index.js",
+    "start:prod": "npm run build && cd server/dist && node index",
     "build": "concurrently \"npm run build:client\" \"npm run build:server\"",
     "build:client": "cd client && ng build --aot --prod",
     "build:server": "cd server && npm run build",
