@@ -12,7 +12,7 @@
     "start:server": "cd server && npm start",
     "start:prod": "npm run build && cd server/dist && node index.js",
     "build": "concurrently \"npm run build:client\" \"npm run build:server\"",
-    "build:client": "cd client && ng build --prod --aot",
+    "build:client": "cd client && ng build --aot --prod",
     "build:server": "cd server && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "heroku-prebuild": "npm run app-install",
